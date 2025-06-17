@@ -60,15 +60,18 @@ async function getFlight (req, res) {
    }
    async function updateSeats(req, res) {
     try {
+        console.log('seats received in PATCH:', req.body.seats, typeof req.body.seats);
         const response = await FlightService.updateSeats({
             flightId: req.params.id,
             seats: req.body.seats,
-            dec: req.body.dec
+            dec: req.body.dec??true
         })
+        
          SuccessResponse.data = response;
         return res.status(StatusCodes.OK).json(SuccessResponse);
 
     } catch (error) {
+        
         ErrorResponse.error = error;
         console.log(error);
         return res.status(error.statusCode).json(ErrorResponse);

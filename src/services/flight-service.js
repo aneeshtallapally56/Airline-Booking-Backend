@@ -195,11 +195,8 @@ try {
     return response;
     
 } catch (error) {
-    console.error('Error in updateSeats:', error); 
-        throw new AppError(
-            'Something went wrong while updating flight seats',
-            StatusCodes.INTERNAL_SERVER_ERROR
-        );  
+   console.error("Error updating seats:", error);
+  throw new AppError("Something went wrong while updating flight seats", 500);
 }
 }
 module.exports = {

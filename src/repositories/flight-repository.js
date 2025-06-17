@@ -65,15 +65,16 @@ class FlightRepository extends CrudRepository {
       await Flight.decrement("totalSeats", {
         by: seats,
         where: { id: flightId },
-      },{ transaction });
+      },{transaction: transaction});
     } else {
       await Flight.increment("totalSeats", {
         by: seats,
         where: { id: flightId },
-      },{transaction});
+      },{transaction: transaction});
     }
     return await Flight.findByPk(flightId);
   }
 }
+
 
 module.exports = FlightRepository;
